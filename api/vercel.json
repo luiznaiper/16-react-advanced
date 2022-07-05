@@ -1,24 +1,13 @@
 {
   "version": 2,
   "name": "16-react-advanced",
-  "builds": [
-      {
-          "use": "@versel/static-build",
-          "src": "package.json"
-      }
-  ],
-  "routes": [
-      {
-          "src": "(.*).js",
-          "dest": "/$1.js"
-      },
-      {
-          "src": "(.*).json",
-          "dest": "/$1.json"
-      },
-      {
-          "src": "/.*",
-          "dest": "index.html"
-      }
+  "builds": [{ "src": "index.js", "use": "@now/node" }],
+  "routes": [{
+    "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+    },
+    "src": "/.*", "dest": "index.js" }
   ]
 }
