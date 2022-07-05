@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { scale } from "../../styles/animation";
 const List = styled.ul`
     display: flex;
     overflow: scroll;
@@ -16,6 +16,7 @@ const List = styled.ul`
         right: 0;
         top: -20px;
         transform: scale(.5);
+        ${scale({time: '0.3s'})}        
         z-index: 1;
     }
 `

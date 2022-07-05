@@ -15,4 +15,17 @@ const fadeIn = ({time='1s', type='ease'}={})=>{
     return css`animation: ${time} ${fadeInKeyFrames} ${type};`
 }
 
-export {fadeIn}
+const scaleDown = keyframes`
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.5);
+    }
+`;
+
+ const scale = ({time='1s', type='ease'} = {})=> css ` 
+    animation: ${time} ${scaleDown} ${type};
+`;
+
+export {fadeIn, scale}
