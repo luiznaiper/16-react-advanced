@@ -11,13 +11,13 @@ const App = () => {
   console.log(detailId)
   return (
     <>
-    <GlobalStyle />
-    <Logo/>
+    <GlobalStyle />    
     {
       detailId
       ? <PhotoCardWithQuery id={detailId}/>
       :
       <BrowserRouter>
+          <Logo/>
           <Routes>
              <Route path='/' element={<Home />} />
              <Route path='/pet/:id' element={<Home />} />
