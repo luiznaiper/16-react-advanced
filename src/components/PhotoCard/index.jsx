@@ -2,9 +2,11 @@ import React from 'react'
 import { ImgWrapper, Img, Article } from './styles'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import {useNearScreen} from '../../hooks/useNearScreen'
-const default_img = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png'
 import { FavButton } from '../FavButton'
 import { ToggleLikeMutation } from '../../containers/ToggleLikeMutation'
+import { Link } from 'react-router-dom'
+
+const default_img = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png'
 
 const PhotoCard = ({id, likes=0, src = default_img}) => {
   const [liked, setLiked] = useLocalStorage(key, false)
@@ -13,14 +15,15 @@ const PhotoCard = ({id, likes=0, src = default_img}) => {
 
 
   return (
+    
     <Article ref={ref}>
       {
         show && <>
-           <a href={`/?detail=${id}`} >
+           <Link to={`/detail/${id}`} >
             <ImgWrapper>
                 <Img src={src}/>
             </ImgWrapper>
-           </a>
+           </Link>
            <ToggleLikeMutation>
               {
                 (toggleLike) => {
