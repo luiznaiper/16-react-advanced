@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
+import { fadeIn } from '../../styles/animation';
+
 
 const Nav = styled.nav`
     display: flex;
@@ -26,6 +28,18 @@ const Link = styled(LinkRouter)`
   height: 100%;
   width: 100%;
   text-decoration: none;    
+    &.selected {
+        color: #000;
+        background-color: lightgray;
+        &:after {
+        ${fadeIn({time:'0.5s'})}
+        content: '•';
+        position: absolute;
+        bottom: 0;
+        font-size: 34px;
+        line-height: 20px;
+        }
+    }
 `
 
 export {Nav, Link}
