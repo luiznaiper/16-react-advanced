@@ -19,7 +19,7 @@ const PhotoCard = ({id, likes=0, src = default_img}) => {
     <Article ref={ref}>
       {
         show && <>
-           <Link to={`/detail/${id}`} >
+           <Link to={`/detail/${id}`}>
             <ImgWrapper>
                 <Img src={src}/>
             </ImgWrapper>

@@ -13,7 +13,7 @@ import { NotRegisteredUser } from './pages/NotRegisteredUser'
 
 const App = () => {
   const urlParams = new URLSearchParams(location.search);
-  const detailId = urlParams.get('detail')
+  const detailId = urlParams.get('detail');
   const { isAuth } = useContext(AppContext)
   return (
     <>
@@ -24,7 +24,7 @@ const App = () => {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/pet/:id' element={<Home />} />
-            <Route path='/detail/:id' element={<Detail />} />
+            <Route path='/detail/:detailId' element={<Detail />} />
             <Route path='/favs' element={isAuth ? <Favs /> : <NotRegisteredUser />}/>
             <Route path='/user'  element={isAuth ? <User /> : <NotRegisteredUser />} />
 
