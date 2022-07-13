@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Form, Input, Button, Title } from "./styles";
 
-const UserForm = ({ activateAuth }) => {
+const UserForm = ({ activateAuth, title }) => {
     const {
         register,
         handleSubmit,
@@ -13,20 +14,23 @@ const UserForm = ({ activateAuth }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-                type="text"
-                placeholder="User"
-                {...register("email", { required: true })}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                {...register("password", { required: true })}
-            />
-            {errors.emailRequired && <span>This filed is required</span>}
-            <input type="submit" />
-        </form>
+        <>
+            <Title>{title}</Title>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <Input
+                    type="text"
+                    placeholder="User"
+                    {...register("email", { required: true })}
+                />
+                <Input
+                    type="password"
+                    placeholder="Password"
+                    {...register("password", { required: true })}
+                />
+                {errors.emailRequired && <span>This filed is required</span>}
+                <Button type="submit">{title}</Button>
+            </Form>
+        </>
     );
 };
 
