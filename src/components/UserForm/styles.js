@@ -12,7 +12,7 @@ const Input = styled.input`
   display: block;
   width: 90%;
   text-align: center;
-  $[:disabled] {
+  &[disabled] {
     opacity: 0.3;
   }
 `;
