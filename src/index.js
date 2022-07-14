@@ -7,6 +7,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
 import { AppProvider } from "./Context";
 import { App } from "./App";
 
@@ -27,6 +28,13 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+
+  onError: onError(({ networkError }) => {
+    if (networkError && networkError.result.code === "invalid_token") {
+      window.sessionStorage.removeItem("token");
+      window.location.href = "/";
+    }
+  }),
 });
 
 const container = document.getElementById("root");
