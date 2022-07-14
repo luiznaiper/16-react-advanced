@@ -13,7 +13,10 @@ const NotRegisteredUser = () => {
                     const onSubmit = ({ email, password }) => {
                         const input = { email, password };
                         const variables = { input };
-                        register({ variables }).then(activateAuth);
+                        register({ variables }).then(({ data }) => {
+                            const { signup } = data;
+                            activateAuth(signup);
+                        });
                     };
                     const errorMsg = error && "User already exists.";
                     return (
@@ -31,7 +34,10 @@ const NotRegisteredUser = () => {
                     const onSubmit = ({ email, password }) => {
                         const input = { email, password };
                         const variables = { input };
-                        login({ variables }).then(activateAuth);
+                        login({ variables }).then(({ data }) => {
+                            const { login } = data;
+                            activateAuth(login);
+                        });
                     };
                     const errorMsg = error && "Incorrect password";
                     return (
