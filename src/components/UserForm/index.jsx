@@ -1,34 +1,23 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useInputValue } from "../../hooks/useInputValue";
 import { Form, Input, Button, Title } from "./styles";
 
-const UserForm = ({ activateAuth, title }) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
-        activateAuth();
+const UserForm = ({ onSubmit, title }) => {
+    const email = useInputValue("");
+    const password = useInputValue("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit({ email: email.value, password: password.value });
     };
 
     return (
         <>
             <Title>{title}</Title>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <Input
-                    type="text"
-                    placeholder="User"
-                    {...register("email", { required: true })}
-                />
-                <Input
-                    type="password"
-                    placeholder="Password"
-                    {...register("password", { required: true })}
-                />
-                {errors.emailRequired && <span>This filed is required</span>}
-                <Button type="submit">{title}</Button>
+            <Form onSubmit={handleSubmit}>
+                <Input placeholder="email" {...email} />
+                <Input type="password" placeholder="password" {...password} />
+                <Button>{title}</Button>
             </Form>
         </>
     );

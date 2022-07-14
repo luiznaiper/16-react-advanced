@@ -1,13 +1,24 @@
 import React, { useContext } from "react";
 import { AppContext } from "../Context";
 import { UserForm } from "../components/UserForm";
+import { RegisterMutation } from "../containers/RegisterMutation";
 
 const NotRegisteredUser = () => {
     const { activateAuth } = useContext(AppContext);
+
     return (
         <>
-            <UserForm title="Sign up" onSubmit={activateAuth} />
-            <UserForm title="Sign in" onSubmit={activateAuth} />
+            <RegisterMutation>
+                {(register) => {
+                    const onSubmit = ({ email, password }) => {
+                        const input = { email, password };
+                        const variables = { input };
+                        register({ variables }).then(activateAuth);
+                    };
+                    return <UserForm onSubmit={onSubmit} title="Registrarse" />;
+                }}
+            </RegisterMutation>
+            <UserForm onSubmit={activateAuth} title="Iniciar sesión" />
         </>
     );
 };
