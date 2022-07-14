@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { useGetFavorite } from "../hooks/useGetFavorites";
+import { ListOfFavs } from "../components/ListOfFavs";
 
-const Favs = () => {
-  return (
-    <div>Favs</div>
-  )
-}
+export const Favs = () => {
+    const { data, loading, error } = useGetFavorite();
 
-export {Favs}
+    if (loading) return "loading...";
+    if (error) return "error";
+
+    return <ListOfFavs favs={data.favs} />;
+};
