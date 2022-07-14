@@ -12,6 +12,9 @@ const Input = styled.input`
   display: block;
   width: 90%;
   text-align: center;
+  $[:disabled] {
+    opacity: 0.3;
+  }
 `;
 
 const Button = styled.button`
@@ -23,6 +26,9 @@ const Button = styled.button`
   display: block;
   width: 90%;
   text-align: center;
+  &[disabled] {
+    opacity: 0.3;
+  }
 `;
 
 const Title = styled.h2`
@@ -32,4 +38,11 @@ const Title = styled.h2`
   padding-left: 20px;
 `;
 
-export { Form, Input, Button, Title };
+const Error = styled.span`
+  font-size: 14px;
+  color: red;
+  text-align: center;
+  padding-left: 20px;
+`;
+
+export { Form, Input, Button, Title, Error };
