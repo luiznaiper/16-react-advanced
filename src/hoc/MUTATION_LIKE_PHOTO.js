@@ -1,12 +1,12 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 const MUTATION_LIKE_PHOTO = gql`
-mutation likeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
-      id,
-      liked,
+  mutation likePhoto($input: LikePhoto!) {
+    likePhoto(input: $input) {
+      id
+      liked
       likes
     }
   }
-`
-export {MUTATION_LIKE_PHOTO}
+`;
+export { MUTATION_LIKE_PHOTO };
