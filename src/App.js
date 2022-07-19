@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppContext } from "./Context";
 import { GlobalStyle } from "./styles/GlobalStyles";
 import { Logo } from "./components/Logo";
@@ -9,10 +9,9 @@ import { Detail } from "./pages/Detail";
 import { Favs } from "./pages/Favs";
 import { User } from "./pages/User";
 import { NotRegisteredUser } from "./pages/NotRegisteredUser";
+import { NotFound } from "./pages/NotFound";
 
 const App = () => {
-  const urlParams = new URLSearchParams(location.search);
-  const detailId = urlParams.get("detail");
   const { isAuth } = useContext(AppContext);
   return (
     <>
@@ -26,12 +25,19 @@ const App = () => {
           <Route path="/detail/:detailId" element={<Detail />} />
           <Route
             path="/favs"
-            element={isAuth ? <Favs /> : <NotRegisteredUser />}
+            element={isAuth ? <Favs /> : <Navigate replace to={"/login"} />}
           />
           <Route
             path="/user"
-            element={isAuth ? <User /> : <NotRegisteredUser />}
+            element={isAuth ? <User /> : <Navigate replace to={"/login"} />}
           />
+          <Route
+            path="/login"
+            element={
+              !isAuth ? <NotRegisteredUser /> : <Navigate replace to="/" />
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <NavBar />
       </BrowserRouter>
