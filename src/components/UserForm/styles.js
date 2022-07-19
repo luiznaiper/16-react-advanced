@@ -17,20 +17,6 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
-  background-color: #fb8122;
-  border-radius: 3px;
-  margin: 0 auto;
-  color: #fff;
-  height: 32px;
-  display: block;
-  width: 90%;
-  text-align: center;
-  &[disabled] {
-    opacity: 0.3;
-  }
-`;
-
 const Title = styled.h2`
   font-size: 16px;
   font-weight: 500;
@@ -45,4 +31,4 @@ const Error = styled.span`
   padding-left: 20px;
 `;
 
-export { Form, Input, Button, Title, Error };
+export { Form, Input, Title, Error };

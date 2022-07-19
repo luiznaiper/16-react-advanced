@@ -28,11 +28,10 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-
   onError: onError(({ networkError }) => {
     if (networkError && networkError.result.code === "invalid_token") {
       window.sessionStorage.removeItem("token");
-      window.location.href = "/";
+      window.location.href = "/user";
     }
   }),
 });
@@ -40,9 +39,9 @@ const client = new ApolloClient({
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
-  <AppProvider>
-    <ApolloProvider client={client}>
+  <ApolloProvider client={client}>
+    <AppProvider>
       <App />
-    </ApolloProvider>
-  </AppProvider>
+    </AppProvider>
+  </ApolloProvider>
 );
