@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WebPackPwaManifestPlugin = require("webpack-pwa-manifest");
 
 module.exports = {
   mode: "development",
@@ -31,6 +32,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
+    }),
+    new WebPackPwaManifestPlugin({
+      name: "Petgram - Pet App",
+      shortname: "Petgram <3",
+      description: "You can find your favorite pets",
+      background_color: "#fff",
+      theme_color: "#fb8122",
+      icons: [
+        {
+          src: path.resolve("src/assets/icon-luis-olivarez.png"),
+          sizes: [96, 128, 192, 256, 384, 512],
+        },
+      ],
     }),
   ],
   devServer: {
