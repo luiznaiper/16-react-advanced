@@ -1,14 +1,21 @@
-import React from 'react';
-import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
-import { Button } from './styles';
+import React from "react";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { Button } from "./styles";
+import propTypes from "prop-types";
 
-const FavButton = ({liked, likes, onClick}) => {
-    const Icon = liked ? MdFavorite : MdFavoriteBorder
+const FavButton = ({ liked, likes, onClick }) => {
+    const Icon = liked ? MdFavorite : MdFavoriteBorder;
     return (
         <Button onClick={onClick}>
-        <Icon size='32px'/> {likes} likes!
-    </Button>
-    )
-}
+            <Icon size="32px" /> {likes} likes!
+        </Button>
+    );
+};
 
-export {FavButton}
+FavButton.propTypes = {
+    liked: propTypes.bool.isRequired,
+    likes: propTypes.number.isRequired,
+    onClick: propTypes.func.isRequired,
+};
+
+export { FavButton };
