@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebPackPwaManifestPlugin = require("webpack-pwa-manifest");
+const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -43,7 +44,29 @@ module.exports = {
         {
           src: path.resolve("src/assets/icon-luis-olivarez.png"),
           sizes: [96, 128, 192, 256, 384, 512],
-          purpose: "maskable",
+          purpose: "any maskable",
+        },
+      ],
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp(
+            "https://(res.cloudinary.com | images.unsplash.com)"
+          ),
+          handler: "CacheFirst",
+          options: {
+            cacheName: "images",
+          },
+        },
+        {
+          urlPattern: new RegExp(
+            "https://16-react-advanced-luiznaiper.vercel.app"
+          ),
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "api",
+          },
         },
       ],
     }),
