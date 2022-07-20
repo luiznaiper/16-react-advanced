@@ -4,7 +4,7 @@ import { ListOfPhotoCardsContainer } from "../containers/ListOfPhotoCardsContain
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-const Home = () => {
+const HomePage = () => {
     let params = useParams();
     return (
         <>
@@ -21,4 +21,6 @@ const Home = () => {
     );
 };
 
-export { Home };
+export const Home = React.memo(HomePage, (prevProps, props) => {
+    return prevProps.categoryId === props.categoryId;
+});
