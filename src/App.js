@@ -22,10 +22,7 @@ const App = () => {
           <GlobalStyle />
           <Logo />
           <Routes>
-            <Route
-              path="/"
-              element={isAuth ? <Home /> : <Navigate replace to={"/login"} />}
-            />
+            <Route path="/" element={<Home />} />
             <Route path="/pet/:id" element={<Home />} />
             <Route path="/detail/:detailId" element={<Detail />} />
             <Route
